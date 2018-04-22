@@ -21,7 +21,6 @@ class CategoriesVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         self.categoryTable.rowHeight = 154
     
     }
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataService.instance.getCategories().count
@@ -45,8 +44,14 @@ class CategoriesVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let productsVC = segue.destination as? ProductsVC {
+            let barBtn = UIBarButtonItem()
+            barBtn.title = ""
+            navigationItem.backBarButtonItem = barBtn
+            
             assert(sender as? Category != nil)
             productsVC.initProducts(category: sender as! Category)
+            
+            
         }
     }
 
